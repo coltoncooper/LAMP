@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    #form_wrapper{
+      border: 2px solid black;
+      width: 300px;
+      padding: 5px 5px;
+    }
+    textarea{
+      width: 90%;
+      resize: none;
+    }
+    </style>
+</head>
+<body>
+  <div id="form_wrapper">
+    <form action="result.php" method="post">
+        Your Name: <input type="text" name="full_name" placeholder="First Name"required><br>
+        Dojo Location: <select name="location">
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="Seattle">Seattle</option>
+                        <option value="Washington DC" selected>Washington DC</option>
+                      </select><br>
+        Favorite Language: <select name="language">
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Python">Python</option>
+                            <option value="Ruby">Ruby</option>
+                          </select><br>
+        Comment(optional): <textarea name="comment" row="4" cols="50" placeholder="Put you comment here!"></textarea><br>
+        <input type="submit" name="submit">
+    </form>
+  </div>
+
+</body>
+</html>

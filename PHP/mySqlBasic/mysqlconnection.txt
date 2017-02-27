@@ -1,0 +1,6 @@
+Warning: mysqli::__construct(): (HY000/1045): Access denied for user 'myroot'@'localhost' (using password: YES) in /Users/edwin146/Desktop/PHP/mySqlBasic/dbconnection.php on line 10
+
+
+Warning: mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in /Users/edwin146/Desktop/PHP/mySqlBasic/dbconnection.php on line 10
+
+Warning: mysqli::__construct(): (HY000/1049): Unknown database 'dummyworld' in /Users/edwin146/Desktop/PHP/mySqlBasic/dbconnection.php on line 10

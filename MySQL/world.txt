@@ -1,0 +1,60 @@
+#1
+SELECT world.countries.name, world.languages.language, world.languages.percentage
+FROM world.countries 
+JOIN world.languages 
+on world.languages.country_id = world.countries.id
+WHERE language = "Slovene"
+ORDER by world.languages.percentage DESC;
+
+#2
+SELECT world.countries.name, count(*) as number_of_cities
+FROM world.cities
+JOIN world.countries
+ON world.cities.country_id = world.countries.id
+GROUP BY world.countries.name
+ORDER BY number_of_cities DESC;
+
+#3
+SELECT world.cities.name, world.cities.population
+FROM world.cities
+JOIN world.countries
+on world.cities.country_id = world.countries.id
+WHERE world.countries.name = "Mexico"
+AND world.cities.population >= 500000
+ORDER BY world.cities.population DESC;
+
+#4
+SELECT world.countries.name, world.languages.language, world.languages.percentage
+FROM world.countries
+JOIN world.languages
+on world.countries.id = world.languages.country_id
+WHERE world.languages.percentage > 89
+ORDER BY world.languages.percentage DESC;
+
+#5
+SELECT world.countries.name, world.countries.surface_area, world.countries.population 
+FROM world.countries 
+WHERE world.countries.surface_area < 501 
+AND world.countries.population > 100000;
+
+#6
+SELECT world.countries.name, world.countries.government_form, world.countries.capital, world.countries.life_expectancy
+FROM world.countries 
+WHERE world.countries.government_form like "%monarchy%" 
+AND world.countries.capital > 200
+AND world.countries.life_expectancy > 75;
+
+#7
+SELECT world.countries.name AS country_name, world.cities.name AS city_name, world.cities.district, world.cities.population
+FROM world.countries 
+JOIN world.cities
+ON world.countries.id = world.cities.country_id
+WHERE world.countries.name = "Argentina"
+AND world.cities.district = "Buenos Aires"
+AND world.cities.population > 500000;
+
+#8
+SELECT world.countries.region, count(*) AS country_count
+FROM world.countries
+GROUP BY world.countries.region
+ORDER BY country_count DESC;

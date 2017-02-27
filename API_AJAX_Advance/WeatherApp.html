@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Weather API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("form").submit(function(){
+                var url = $(this).attr("action") + "?" + $(this).serialize();
+                $.get(url, function(data){
+                    console.log(data);
+
+                    var city = data.city.name;
+                    var country = data.city.country;
+                    var max = Math.floor(data.list[0].main.temp_max * (9/5) - 459.69)
+                    var min = Math.floor(data.list[0].main.temp_min * (9/5) - 459.69)
+
+                    $("#city").text(city);
+                    $("#country").text(country);
+                    $("#maxTemp").text(max);
+                    $("#minTemp").text(min);
+
+                }, "json")
+
+                return false;
+            })
+
+        })
+
+    </script>
+</head>
+<body>
+    <form action="http://api.openweathermap.org/data/2.5/forecast/weather" method="GET">
+        <p>
+            <label>City: </label>
+            <input type="text" name="q">
+        </p>
+        <input type="hidden" name="APPID" value="1ef0def6188a89c45a4f41ffb372be29">
+        <input type="submit" value="Check the weather">
+    </form>
+
+    <div id="weather">
+        <p>City: <span id="city"></span></p>
+        <p>Country: <span id="country"></span></p>
+        <p>Max Temp: <span id="maxTemp"></span></p>
+        <p>Min Temp: <span id="minTemp"></span></p>
+    </div>
+</body>
+</html

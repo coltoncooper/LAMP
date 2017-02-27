@@ -1,0 +1,72 @@
+#1
+SELECT sakila.customer.first_name, sakila.customer.last_name, sakila.customer.email, sakila.address.address
+FROM sakila.customer
+JOIN sakila.address
+ON sakila.address.address_id = sakila.customer.address_id
+WHERE sakila.address.city_id = 312;
+
+#2
+SELECT sakila.film.title, sakila.film.description, sakila.film.release_year, sakila.film.rating, sakila.film.special_features, sakila.category.name as genre
+FROM sakila.film
+JOIN sakila.film_category
+ON sakila.film.film_id = sakila.film_category.film_id
+JOIN sakila.category
+ON sakila.film_category.category_id = sakila.category.category_id
+WHERE sakila.category.name ="Comedy";
+
+#3
+SELECT sakila.film.title, sakila.film.description, sakila.film.release_year
+FROM sakila.film
+JOIN sakila.film_actor
+ON sakila.film.film_id = sakila.film_actor.film_id
+WHERE sakila.film_actor.actor_id = 5;
+
+#4
+SELECT sakila.customer.first_name, sakila.customer.last_name, sakila.customer.email, sakila.address.address
+FROM sakila.customer
+JOIN sakila.address
+ON sakila.customer.address_id = sakila.address.address_id
+JOIN sakila.store
+ON sakila.store.store_id = sakila.customer.store_id
+WHERE sakila.store.store_id = 1;
+
+#5
+SELECT sakila.film.title, sakila.film.description, sakila.film.release_year, sakila.film.rating, sakila.film.special_features
+FROM sakila.film
+JOIN sakila.film_actor
+ON sakila.film.film_id = sakila.film_actor.film_id
+JOIN sakila.actor
+ON sakila.actor.actor_id = sakila.film_Actor.actor_id
+WHERE sakila.film.rating = "G" AND sakila.film.special_features like "%Behind the Scene%" AND sakila.actor.actor_id = 15;
+
+#6
+SELECT sakila.film_actor.film_id, sakila.film.title, sakila.actor.actor_id, sakila.actor.first_name, sakila.actor.last_name
+FROM sakila.film
+JOIN sakila.film_actor
+ON sakila.film.film_id = sakila.film_actor.film_id
+JOIN sakila.actor
+ON sakila.actor.actor_id = sakila.film_actor.actor_id
+WHERE sakila.film_actor.film_id = 369;
+
+#7
+SELECT sakila.film.title, sakila.film.description, sakila.film.release_year, sakila.film.rating, sakila.film.special_features, sakila.category.name as genre
+FROM sakila.film
+JOIN sakila.film_category
+ON sakila.film.film_id = sakila.film_category.film_id
+JOIN sakila.category
+ON sakila.category.category_id = sakila.film_category.category_id
+WHERE sakila.category.name = "Drama" AND sakila.film.rental_rate = 2.99;
+
+#8
+SELECT sakila.film.title, sakila.film.description, sakila.film.release_year, sakila.film.rating, sakila.film.special_features, sakila.category.name, sakila.actor.first_name, sakila.actor.last_name
+FROM sakila.film
+JOIN sakila.film_category
+ON sakila.film.film_id = sakila.film_category.film_id
+JOIN sakila.category
+ON sakila.category.category_id = sakila.film_category.category_id
+JOIN sakila.film_actor
+ON sakila.film_actor.film_id = sakila.film.film_id
+JOIN sakila.actor
+ON sakila.actor.actor_id = sakila.film_actor.actor_id
+WHERE sakila.category.name = "action" 
+AND sakila.actor.first_name = "SANDRA" AND sakila.actor.last_name = "KILMER";

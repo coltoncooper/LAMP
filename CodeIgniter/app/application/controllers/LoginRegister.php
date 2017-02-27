@@ -1,0 +1,74 @@
+<?php 
+	
+class LoginRegister extends CI_Controller 
+{
+	public function index()
+	{
+		$this->load->view('login_register_view');
+	}
+
+	public function registration()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('email', 'Email Address', 'required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
+		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
+		$this->form_validation->set_rules('birthdate', 'Birthdate', 'required');
+		if($this->form_validation->run() === FALSE) //not success
+		{
+			$this->session->set_flashdata('errors', validation_errors());
+			redirect(base_url());
+		}
+		else //success
+		{
+			$this->session->set_flashdata('success', 'You have successfully registered!');
+			$this->load->model('users_model');
+			// encrypting password
+			$this->load->library('encrypt');
+			$hash = $this->encrypt->sha1($this->input->post('password'));
+
+			$user_details = array(
+				'name' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+				'password' => $hash,
+				'birthdate' => $this->input->post('birthdate')
+				);
+			$add_user = $this->users_model->add_user($user_details);
+
+			redirect(base_url());
+		}
+	}
+
+	public function signin()
+	{
+		$this->load->model('users_model');
+		$email = $this->input->post('email');
+		$this->load->library('encrypt');
+		$password = $this->encrypt->sha1($this->input->post('password'));
+		$get_user = $this->users_model->login_user($email);
+		if($get_user && $get_user['password'] == $password) //login success
+		{
+			$user = array(
+				'id'=>$get_user['id'],
+				'name'=>$get_user['Name'],
+				'email'=>$get_user['email']
+			);
+			$this->session->set_userdata('user', $get_user);
+
+			redirect(base_url('appointments'));
+		}
+		else
+		{
+			$this->session->set_flashdata('errors', 'Invalid email or password');
+			redirect(base_url());
+		}
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url());
+	}
+}
+ ?>

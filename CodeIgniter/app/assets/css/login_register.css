@@ -1,0 +1,79 @@
+body {
+	background-color: #058260;
+	font-family: sans-serif;
+}
+
+#container {
+	background-color: #CCCCCC;
+	width: 700px;
+	margin: 0 auto;
+	padding: 30px;
+}
+
+#header {
+	border-bottom: 1px solid #058260;
+}
+
+#title {
+	margin-top: 0px;
+	display: inline-block;
+}
+
+a, a:visited {
+	color: #058260;
+}
+
+h3 {
+	margin-left: 200px;
+	display: inline-block;
+}
+
+#register {
+	display: inline-block;
+}
+
+#alerts {
+	height: 20px;
+}
+
+#error {
+	color: red;
+	display: inline-block;
+	vertical-align: top;
+}
+
+	#error p {
+		height: 37px;
+	}
+
+#success {
+	color: green;
+}
+
+#alerts {
+	display: inline-block;
+	vertical-align: top;
+}
+#login {
+	/*display: inline-block;*/
+}
+
+#register, #add_appt {
+	display: inline-block;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+	border: 1px solid black;
+}
+
+form input, select {
+	display: block;
+}
+
+
+

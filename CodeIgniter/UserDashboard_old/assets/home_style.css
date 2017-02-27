@@ -1,0 +1,11 @@
+.container{
+	padding:10px 0px 10px 10px;
+	background-color: #DDDDDD;
+	width: 90%;
+}
+
+#box1, #box2, #box3{
+	display: inline-block;
+	width: 350px;
+	text-align: center;
+}
